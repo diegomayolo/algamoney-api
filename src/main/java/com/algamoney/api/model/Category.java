@@ -2,14 +2,18 @@ package com.algamoney.api.model;
 
 import jakarta.persistence.*;
 
+/**
+ *
+ * @author dm
+ */
 @Entity
-@Table(name = "categoria")
-public class Categoria
+@Table(name = "categories")
+public class Category
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String name;
 
     /**
      * getId
@@ -36,18 +40,18 @@ public class Categoria
      *
      * @return String
      */
-    public String getNome()
+    public String getName()
     {
-        return nome;
+        return name;
     }
 
     /**
-     * setNome
+     * setName
      *
-     * @param nome String
+     * @param name String
      */
-    public void setNome( String nome )
+    public void setName( String name )
     {
-        this.nome = nome;
+        this.name = name;
     }
 }
