@@ -2,12 +2,14 @@ package com.algamoney.api.resource;
 
 import com.algamoney.api.model.Category;
 import com.algamoney.api.repository.CategoryRepository;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+//import javax.validation.Valid;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +44,7 @@ public class CategoryResource
      * @return ResponseEntity<Category>
      */
     @PostMapping
-    public ResponseEntity<Category> create( @RequestBody Category category, HttpServletResponse response )
+    public ResponseEntity<Category> create( @Valid @RequestBody Category category, HttpServletResponse response )
     {
         Category savedCategory = categoryRepository.save( category );
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path( "/{id}" ).buildAndExpand( savedCategory.getId() ).toUri();
@@ -60,8 +62,8 @@ public class CategoryResource
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById( @PathVariable Long id )
     {
-        Optional<Category> category = categoryRepository.findById( id );
+        Optional<Category> optional = categoryRepository.findById( id );
 
-        return category.isPresent() ? ResponseEntity.ok( category.get() ) : ResponseEntity.notFound().build();
+        return optional.isPresent() ? ResponseEntity.ok( optional.get() ) : ResponseEntity.notFound().build();
     }
 }

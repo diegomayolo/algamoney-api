@@ -1,6 +1,8 @@
 package com.algamoney.api.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -13,6 +15,9 @@ public class Category
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Size(min = 3, max = 20 )
     private String name;
 
     /**
