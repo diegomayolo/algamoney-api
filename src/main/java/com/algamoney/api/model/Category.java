@@ -21,6 +21,23 @@ public class Category
     private String name;
 
     /**
+     * Category
+     */
+    public Category() {}
+
+    /**
+     * Category
+     *
+     * @param id Long
+     * @param name String
+     */
+    public Category( Long id, String name )
+    {
+        this.id = id;
+        this.name = name;
+    }
+
+    /**
      * getId
      *
      * @return Long
