@@ -72,4 +72,16 @@ public class PeopleResource
 
         return optional.isPresent() ? ResponseEntity.ok( optional.get() ) : ResponseEntity.notFound().build();
     }
+
+    /**
+     * delete
+     *
+     * @param id Long
+     */
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete( @PathVariable Long id )
+    {
+        peopleRepository.deleteById( id );
+    }
 }
